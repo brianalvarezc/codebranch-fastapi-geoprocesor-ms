@@ -16,6 +16,9 @@ class ProcessCoordinatesService(ICoordinatesProcessorGateway):
     def process_coordinates(self, payload: PointsInputSchema) -> ProcessedCoordinatesOut:
         points_data: List[PointSchema] = getattr(payload, 'points', [])
 
+        if len(points_data) == 0:
+            raise HTTPException(status_code=400, detail="Point list cannot be empty.")
+
         points = []
         for p in points_data:
 
@@ -23,8 +26,8 @@ class ProcessCoordinatesService(ICoordinatesProcessorGateway):
                 lat = float(p.lat)
                 lng = float(p.lng)
             except (TypeError, ValueError):
-                raise HTTPException(status_code=400, detail="Latitud y longitud deben ser valores numéricos.")
-            
+                raise HTTPException(status_code=400, detail="Latitude and longitude must be numeric values.")
+
             points.append(Point(lat=lat, lng=lng))
 
         processed = self.use_case.execute(points)
