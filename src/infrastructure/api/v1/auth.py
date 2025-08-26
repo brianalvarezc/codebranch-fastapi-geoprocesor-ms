@@ -22,12 +22,16 @@ ALGORITHM = settings.ALGORITHM
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.ACCESS_TOKEN_EXPIRE_MINUTES
 
 # Autenticación y generación de token
-@router.post("/login", response_model=TokenSchema)
-def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    if USE_FAKE_USER:
-        return auth_service.fake_login()
-    else:
-        return auth_service.login(form_data)
+
+# @router.post("/login", response_model=TokenSchema)
+# def login(form_data: OAuth2PasswordRequestForm = Depends()):
+#     """
+#     (Disabled) Login endpoint for JWT authentication. Not exposed in OpenAPI docs.
+#     """
+#     if USE_FAKE_USER:
+#         return auth_service.fake_login()
+#     else:
+#         return auth_service.login(form_data)
 
 
 

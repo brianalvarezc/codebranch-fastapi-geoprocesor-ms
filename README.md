@@ -57,6 +57,9 @@ This microservice performs coordinate geoprocessing using FastAPI. It calculates
     docker run -d -p 8080:8080 --env PORT=8080 --env-file .env geoprocessor-ms
     ```
     This works even without changing anything in the .env file or system environment variables—the value is set directly via the build argument and container environment.
+
+    **Security Note:**
+    For security, the Dockerfile creates a non-root user with limited permissions, sufficient only for running the application in `/app`. This reduces the risk of privilege escalation or lateral movement attacks inside the container.
 	
 
 ## Authentication (Optional, deactivated in endpoints)
@@ -64,7 +67,10 @@ The microservice uses JWT authentication. To obtain a token, make a request to t
 
 **Login example:**
 ```bash
-curl -X POST "http://localhost:8000/auth/login" -H "Content-Type: application/json" -d '{"username": "<username>", "password": "<password>"}'
+curl -X POST "http://localhost:8000/auth/login" \
+    -H "Content-Type: multipart/form-data" \
+    -F "username=<username>" \
+    -F "password=<password>"
 ```
 Include the token in the `Authorization` header in your requests:
 ```
