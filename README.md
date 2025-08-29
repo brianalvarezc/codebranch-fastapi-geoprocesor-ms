@@ -18,7 +18,7 @@ This microservice performs coordinate geoprocessing using FastAPI. It calculates
 	# Activate venv (Linux/Mac)
 	source venv/bin/activate
 	```
-	To deactivate the virtual environment:
+	If needed to deactivate the virtual environment (When finishing local development for example):
 	```bash
 	deactivate
 	```
@@ -87,11 +87,11 @@ Authorization: Bearer <token>
     ```json
 		{
 			"points": [
-				{ "lat": 40.712776, "lng": -74.005974 },    // New York, USA
-				{ "lat": -33.868820, "lng": 151.209296 },   // Sydney, Australia
-				{ "lat": 35.689487, "lng": 139.691711 },    // Tokyo, Japan
-				{ "lat": 55.755825, "lng": 37.617298 },     // Moscow, Russia
-				{ "lat": -23.550520, "lng": -46.633308 }    // São Paulo, Brazil
+				{ "lat": 40.712776, "lng": -74.005974 },
+				{ "lat": -33.868820, "lng": 151.209296 },
+				{ "lat": 35.689487, "lng": 139.691711 },
+				{ "lat": 55.755825, "lng": 37.617298 }, 
+				{ "lat": -23.550520, "lng": -46.633308 }
 			]
 		}
 

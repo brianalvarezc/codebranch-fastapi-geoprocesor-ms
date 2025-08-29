@@ -1,3 +1,4 @@
+import time
 from fastapi import APIRouter, status, Depends
 
 from src.infrastructure.api.v1.auth import get_current_user
@@ -36,4 +37,6 @@ def process_coordinates(
         - 400: Invalid or empty points list.
         - 422: Validation error (missing lat/lng).
     """
+    # 3 seconds delay to validate caching
+    time.sleep(3)
     return service.process_coordinates(payload)
